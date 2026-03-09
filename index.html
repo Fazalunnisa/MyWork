@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home - Skill Circle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+
+       <h4 class="logo">
+        <i class="fa-solid fa-graduation-cap"></i> Skill Circle
+    </h4>
+
+    <ul class="menu">
+        <li class="active"><i class="fa-solid fa-house"></i> Dashboard</li>
+        <li><i class="fa-solid fa-book-open"></i> My Courses</li>
+        <li><i class="fa-solid fa-layer-group"></i> All Skills</li>
+        <li><i class="fa-solid fa-certificate"></i> Certificates</li>
+        <li><i class="fa-solid fa-chart-line"></i> Progress</li>
+        <li><i class="fa-solid fa-user"></i> Profile</li>
+        <li class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+    </ul>
+
+</div>
+
+
+<div class="main-content" id="mainContent">
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-custom px-4">
+    <button class="btn toggle-btn me-2" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a class="navbar-brand d-flex align-items-center" href="#">
+        
+        <img src="logo.jpg" class="logo-img" alt="Logo">
+        <span class="ms-2 brand-text">Skill</span> <span class="ms-2 brand-text">Circle</span>
+    </a>
+
+    <div class="ms-auto">
+        <div class="dropdown">
+            <button class="btn profile-btn dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-user"></i> Profile
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">My Courses</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+
+
+<!-- Search -->
+<div class="search-container mt-4">
+
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-6">
+        <input type="text" id="searchInput" class="form-control search-box" placeholder="Search skills..." onkeydown="handleSearch(event)">
+        <span id="clearSearch">&times;</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- Stats -->
+<div class="container my-5 stats-section">
+
+<div class="row text-center g-4">
+
+<div class="col-md-3 col-6">
+<div class="stat-box">
+<i class="fa-solid fa-users stat-icon text-primary"></i>
+<h2 id="studentsCount">0+</h2>
+<p>Active Students</p>
+</div>
+</div>
+
+<div class="col-md-3 col-6">
+<div class="stat-box">
+<i class="fa-solid fa-book-open stat-icon text-success"></i>
+<h2 id="coursesCount">0+</h2>
+<p>Total Courses</p>
+</div>
+</div>
+
+<div class="col-md-3 col-6">
+<div class="stat-box">
+<i class="fa-solid fa-certificate stat-icon text-warning"></i>
+<h2 id="certificatesCount">0+</h2>
+<p>Certificates Issued</p>
+</div>
+</div>
+
+<div class="col-md-3 col-6">
+<div class="stat-box">
+<i class="fa-solid fa-chart-line stat-icon text-danger"></i>
+<h2 id="successRate">0%</h2>
+<p>Success Rate</p>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- Title -->
+<div class="container text-center mb-4">
+<h1 class="gradient-text">Explore Skills</h1>
+<p class="text-muted">Choose a course to start learning</p>
+</div>
+
+<div class="text-center mb-4">
+    <button class="btn btn-filter active" onclick="filterCategory('all',event)">All</button>
+    <button class="btn btn-filter" onclick="filterCategory('tech',event)">Technical</button>
+    <button class="btn btn-filter" onclick="filterCategory('nontech',event)">Non-Technical</button>
+</div>
+
+<!-- Courses -->
+<div class="container">
+<div class="row g-4" id="skillsContainer">
+
+<div class="col-md-3 col-sm-6 skill-item tech">
+<div class="skill-card card-blue" onclick="openCourse('Web Development')">
+<i class="fa-solid fa-code skill-icon text-primary"></i>
+<h5>Web Development</h5>
+<p>HTML, CSS, JS</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 skill-item tech">
+<div class="skill-card card-green" onclick="openCourse('Programming')">
+<i class="fa-solid fa-laptop-code skill-icon text-success"></i>
+<h5>Programming</h5>
+<p>C, Java, Python</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 skill-item tech">
+<div class="skill-card card-purple" onclick="openCourse('Data Science')">
+<i class="fa-solid fa-chart-line skill-icon text-warning"></i>
+<h5>Data Science</h5>
+<p>ML, AI</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 skill-item tech">
+<div class="skill-card card-red" onclick="openCourse('Cyber Security')">
+<i class="fa-solid fa-shield-halved skill-icon text-danger"></i>
+<h5>Cyber Security</h5>
+<p>Ethical Hacking</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 skill-item nontech">
+<div class="skill-card card-orange" onclick="openCourse('Communication')">
+<i class="fa-solid fa-comments skill-icon text-info"></i>
+<h5>Communication</h5>
+<p>Public Speaking</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 skill-item nontech">
+<div class="skill-card card-yellow" onclick="openCourse('Leadership')">
+<i class="fa-solid fa-user-tie skill-icon text-success"></i>
+<h5>Leadership</h5>
+<p>Team Management</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 skill-item nontech">
+<div class="skill-card card-teal" onclick="openCourse('Time Management')">
+<i class="fa-solid fa-clock skill-icon text-primary"></i>
+<h5>Time Management</h5>
+<p>Productivity</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 skill-item nontech">
+<div class="skill-card card-gray" onclick="openCourse('Personality Development')">
+<i class="fa-solid fa-star skill-icon text-warning"></i>
+<h5>Personality Dev</h5>
+<p>Confidence</p>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+function openCourse(name){
+localStorage.setItem("selectedCourse", name);
+window.location.href="course.html";
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const sidebar = document.getElementById("sidebar");
+    const toggleBtn = document.querySelector(".toggle-btn");
+    const mainContent = document.querySelector(".main-content");
+    
+    /* open / close sidebar */
+    toggleBtn.addEventListener("click", function(e){
+    
+    e.stopPropagation();
+    
+    sidebar.classList.toggle("open");
+    mainContent.classList.toggle("shift");
+    
+    });
+    
+    /* close sidebar when clicking anywhere */
+    document.addEventListener("click", function(e){
+    
+    if(!sidebar.contains(e.target) && !toggleBtn.contains(e.target)){
+    
+    sidebar.classList.remove("open");
+    mainContent.classList.remove("shift");
+    
+    }
+    
+    });
+    
+    });
+
+/* SEARCH */
+function handleSearch(e){
+if(e.key==="Enter") filterSkills();
+}
+
+function filterSkills(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+let items=document.querySelectorAll(".skill-item");
+
+let first=null;
+
+items.forEach(item=>{
+let text=item.innerText.toLowerCase();
+
+if(text.includes(input)){
+item.style.display="block";
+if(!first) first=item;
+}else{
+item.style.display="none";
+}
+});
+
+if(first){
+first.scrollIntoView({behavior:"smooth",block:"center"});
+}
+}
+
+const input = document.getElementById("searchInput");
+const clearBtn = document.getElementById("clearSearch");
+
+input.addEventListener("input", function(){
+    if(input.value.length > 0){
+        clearBtn.style.display = "block";
+    }else{
+        clearBtn.style.display = "none";
+    }
+});
+
+clearBtn.addEventListener("click", function(){
+    input.value = "";
+    clearBtn.style.display = "none";
+    input.focus();
+});
+    
+
+
+/* FILTER */
+
+function filterCategory(category, event) {
+
+    let items = document.querySelectorAll(".skill-item");
+    let buttons = document.querySelectorAll(".btn-filter");
+
+    // remove active from all
+    buttons.forEach(btn => btn.classList.remove("active"));
+
+    // add active to clicked
+    if (event) {
+        event.target.classList.add("active");
+    }
+
+    items.forEach(item => {
+
+        if (category === "all") {
+            item.style.display = "block";
+        }
+        else if (item.classList.contains(category)) {
+            item.style.display = "block";
+        }
+        else {
+            item.style.display = "none";
+        }
+
+    });
+}
+
+
+/* COUNTER */
+function animate(id,end,symbol="+"){
+
+let el=document.getElementById(id);
+let start=0;
+
+let timer=setInterval(()=>{
+start++;
+el.innerText=start+symbol;
+if(start>=end) clearInterval(timer);
+},20);
+
+}
+
+window.onload=()=>{
+animate("studentsCount",120,"+");
+animate("coursesCount",25,"+");
+animate("certificatesCount",80,"+");
+animate("successRate",95,"%");
+};
+
+</script>
+
+</body>
+</html>
